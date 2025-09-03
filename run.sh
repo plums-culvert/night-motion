@@ -53,3 +53,4 @@ python -m pip install opencv-python numpy
 # --- 5) Run detectors/composites ---
 python detect_night_lights.py
 python composite_lights.py
+python heatmap_cluster_crops.py
