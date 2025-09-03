@@ -43,30 +43,3 @@ The final output are individual images of clusters of movement:
 <img width="183" height="171" alt="cluster_003" src="https://github.com/user-attachments/assets/4a223bc2-0157-42f5-ad41-7a62b82a6ef2" />
 <img width="180" height="168" alt="cluster_002" src="https://github.com/user-attachments/assets/e8cefaf0-4fcf-4612-b343-2f1ce4366fa8" />
 <img width="339" height="261" alt="cluster_001" src="https://github.com/user-attachments/assets/e1a35888-0714-4ce5-9c1e-6a4679d5d2c2" />
-
-### Interesting
-
-The probability of three independent moving objects crossing the same spot in the sky:
-
-
-**Example percentage:** 0.00000086% (μ=1/min, FOV 30°×20°, r=0.25°) — ≈1 in 116,000,000 minutes.
-
-#### Formula
-
-`P% ≈ [ 1 − e^(−μ) * (1 + μ + μ²/2) ] * (A / Ω)² * 100`
-
-- `μ` = average number of moving objects entering the camera frame in 60 s  
-- `Ω` = field of view area in steradians (convert your camera’s angular FOV into solid angle)  
-- `A` = area of the “same place” patch of sky = π r² (with r in radians)  
-
-#### Simple Explanation
-
-1. **At least three objects in the frame**  
-   - The first part `[ 1 − e^(−μ) * (1 + μ + μ²/2) ]` is the probability that 3 or more objects show up in the frame during 60 seconds.  
-
-2. **All three overlap in the same patch**  
-   - `(A / Ω)` is the fraction of the frame covered by your chosen “same spot.”  
-   - Squaring it makes it the probability that, after the first object, the 2nd and 3rd also fall in that patch.  
-
-3. **Combine them**  
-   - Multiply the two pieces together → probability of **3 independent objects crossing the same spot in the sky during one 60-second exposure**.
