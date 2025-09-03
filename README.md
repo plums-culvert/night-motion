@@ -9,7 +9,7 @@ Your directory should contain:
 - `run.sh`
 - `detect_night_lights.py`
 - `composite_lights.py`
-- `your_movie_any_name.mp4`
+- `your_movie_any_name.mp4/mov`
 
 Then, run:
 
