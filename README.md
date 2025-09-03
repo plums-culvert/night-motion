@@ -25,23 +25,21 @@ chmod +x run.sh && ./run.sh -crop 36 # Change the % of the video to crop. The ex
 ### Composite
 You can see stationary objects clearly which are most likely stars. Moving objects have larger, tightly grouped, linear arrays of highlighted boxes:
 
-<img width="2896" height="674" alt="composite_max" src="https://github.com/user-attachments/assets/12ca3352-e38f-4418-b7c6-93a27f16d05f" />
+<img width="2896" height="674" alt="composite_max" src="https://github.com/user-attachments/assets/2488d809-72aa-4477-b84e-116d9ba695d6" />
 
 ### Heatmap
 The generated heat map removes the boxes to make the object's motion more visible. In this example, it's interesting that there are three distinct objects all in a close proximity. They only move for short durations of the overall video, and do not appear to have an appearance and motion attributing them as satellites or airplanes:
 
-<img width="2896" height="674" alt="composite_heatmap" src="https://github.com/user-attachments/assets/f0569dec-dcb5-4236-89b4-d1a7612e7a1e" />
+<img width="2896" height="674" alt="composite_heatmap" src="https://github.com/user-attachments/assets/8a87dfa5-6b44-4360-9a14-142b3d0a0496" />
 
 ### Heatmap Clusters
 The heatmap file finally identifies clusters of movement:
 
-<img width="2896" height="674" alt="heatmap_boxes" src="https://github.com/user-attachments/assets/08d19264-15b8-4ff7-aa81-26ba213af54d" />
+<img width="2896" height="674" alt="heatmap_boxes" src="https://github.com/user-attachments/assets/a61a4493-5d29-4339-a31d-c1854282e0f6" />
 
 ### Cropped Clusters
 The final output are individual images of clusters of movement:
 
-<img width="453" height="264" alt="cluster_002" src="https://github.com/user-attachments/assets/be3fdcbc-90bf-45cc-8382-fcee7a57b92b" />
-<img width="207" height="162" alt="cluster_001" src="https://github.com/user-attachments/assets/6776a6b6-81c8-4c0f-8ba0-c6d57f21e96f" />
-<img width="183" height="168" alt="cluster_003" src="https://github.com/user-attachments/assets/9ac56cb6-5bbf-4bde-afef-a0385ebc0449" />
-<img width="177" height="171" alt="cluster_004" src="https://github.com/user-attachments/assets/2c4c3c0e-1aa6-455c-89bc-015aec11e188" />
-<img width="183" height="171" alt="cluster_005" src="https://github.com/user-attachments/assets/5dc5ede3-e5f2-427d-960b-62f9f634aa67" />
+<img width="183" height="171" alt="cluster_003" src="https://github.com/user-attachments/assets/4a223bc2-0157-42f5-ad41-7a62b82a6ef2" />
+<img width="180" height="168" alt="cluster_002" src="https://github.com/user-attachments/assets/e8cefaf0-4fcf-4612-b343-2f1ce4366fa8" />
+<img width="339" height="261" alt="cluster_001" src="https://github.com/user-attachments/assets/e1a35888-0714-4ce5-9c1e-6a4679d5d2c2" />
