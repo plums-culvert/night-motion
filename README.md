@@ -17,7 +17,7 @@ Your directory should contain:
 Then, run:
 
 ```bash
-chmod +x run.sh && ./run.sh 
+chmod +x run.sh && ./run.sh -crop 36 # Change the % of the video to crop. The example shows cropping to keep the top 36%.
 ```
 
 ## Example Output
