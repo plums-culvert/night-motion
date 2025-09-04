@@ -66,18 +66,33 @@ def heatmap_from_boxes(report_path: Path, shape_hw):
             y1 = max(0, y)
             if x1 < x2 and y1 < y2:
                 acc[y1:y2, x1:x2] += 1.0
-    if acc.max() > 0:
-        acc_norm = (acc / acc.max()) * 255.0
+
+    # --- higher-contrast normalization over non-zero counts ---
+    
+    # Change lo and hi values for better contrast in the heat map. 
+    # For more dim objects, try 10/90. For Bright lights, try 1/99.
+    
+    nz = acc[acc > 0]
+    if nz.size:
+        lo = float(np.percentile(nz, 1.0))
+        hi = float(np.percentile(nz, 99.0))
+        if hi <= lo:
+            hi = lo + 1e-6
+        acc_clip = np.clip(acc, lo, hi)
+        acc_norm01 = (acc_clip - lo) / (hi - lo)
+        acc_norm = (np.sqrt(acc_norm01) * 255.0)
     else:
         acc_norm = acc
-    acc_uint8 = acc_norm.astype(np.uint8)
+
+    acc_uint8 = np.clip(acc_norm, 0, 255).astype(np.uint8)
+    acc_uint8 = cv2.medianBlur(acc_uint8, 3)  # suppress salt noise
     return acc_uint8
 
 def colorize_heatmap(gray_heat, colormap):
     return cv2.applyColorMap(gray_heat, colormap)
 
 def overlay_heatmap(base_bgr, heatmap_bgr, alpha: float):
-    # simple alpha blend: alpha * heat + (1-alpha) * base
+    # correct alpha blend: alpha * heat + (1 - alpha) * base
     base = base_bgr.astype(np.float32)
     heat = heatmap_bgr.astype(np.float32)
     out = alpha * heat + (1.0 - alpha) * base
@@ -110,11 +125,7 @@ def main():
         heat_bgr = colorize_heatmap(heat_gray, cfg["HEATMAP_COLORMAP"])
         cv2.imwrite(str(out_dir / cfg["OUT_HEATMAP"]), heat_bgr)
 
-        # Overlay on a reference image: use mean stack if computed, else first annotated
-        if cfg["MAKE_MEAN_STACK"]:
-            base = comp_mean
-        else:
-            base = imgs[0]
+        base = comp_mean if cfg["MAKE_MEAN_STACK"] else imgs[0]
         overlay = overlay_heatmap(base, heat_bgr, float(cfg["OVERLAY_ALPHA"]))
         cv2.imwrite(str(out_dir / cfg["OUT_OVERLAY"]), overlay)
 
